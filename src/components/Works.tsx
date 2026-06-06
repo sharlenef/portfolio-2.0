@@ -1,9 +1,5 @@
-const projects = [
-  { id: 1, title: "", description: "", tags: [], slug: "" },
-  { id: 2, title: "", description: "", tags: [], slug: "" },
-  { id: 3, title: "", description: "", tags: [], slug: "" },
-  { id: 4, title: "", description: "", tags: [], slug: "" },
-];
+import Link from "next/link";
+import { caseStudies, getAccentTextColor, getCardColor } from "@/data/case-studies";
 
 export default function Works() {
   return (
@@ -13,8 +9,8 @@ export default function Works() {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} {...project} />
+        {caseStudies.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
         ))}
       </div>
     </section>
@@ -22,51 +18,58 @@ export default function Works() {
 }
 
 function ProjectCard({
-  title,
-  slug,
+  project,
 }: {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  slug: string;
+  project: (typeof caseStudies)[number];
 }) {
-  return (
-    <div
-      className="group relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[4/3] cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
-    >
-      {/* Thumbnail placeholder */}
-      <div className="absolute inset-0 bg-neutral-200 group-hover:bg-neutral-300 transition-colors duration-300" />
+  const accentTextColor = getAccentTextColor(project);
+  const cardColor = getCardColor(project);
 
-      {/* Overlay on hover */}
-      {title && (
+  return (
+    <Link href={`/works/${project.slug}`} className="block group">
+      <div className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[4/3] cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div
+          className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-90"
+          style={{ backgroundColor: cardColor }}
+        />
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span
+            className="font-sans text-2xl font-medium"
+            style={{ color: accentTextColor }}
+          >
+            {project.title}
+          </span>
+        </div>
+
         <div className="absolute inset-0 bg-white/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
           <p className="font-sans text-xs text-neutral-400 mb-1 uppercase tracking-widest">
             Case study
           </p>
-          <h3 className="font-sans text-base font-medium text-neutral-900">
-            {title}
+          <h3
+            className="font-sans text-base font-medium"
+            style={{ color: accentTextColor }}
+          >
+            {project.title}
           </h3>
-          {slug && (
-            <span className="mt-3 inline-flex items-center gap-1 font-sans text-xs text-neutral-600">
-              View project
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </span>
-          )}
+          <span className="mt-3 inline-flex items-center gap-1 font-sans text-xs text-neutral-600">
+            View project
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
         </div>
-      )}
-    </div>
+      </div>
+    </Link>
   );
 }

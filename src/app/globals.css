@@ -12,6 +12,12 @@
   --color-accent-pink: #d54b72;
   --color-accent-purple: #645ccd;
   --color-accent-orange: #f3b279;
+  --color-hobbio-green: #00473e;
+  --color-hobbio-muted: #f3f7f5;
+}
+
+.hobbio-green {
+  color: #00473e;
 }
 
 body {
