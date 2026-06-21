@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import CaseStudySidebar from "@/components/case-study/CaseStudySidebar";
+import CaseStudyResearchBlocks from "@/components/case-study/CaseStudyResearchBlocks";
 import {
   CaseStudyCallout,
   CaseStudyMetaGrid,
@@ -67,6 +68,13 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
                     >
                       {section.callout}
                     </CaseStudyCallout>
+                  )}
+                  {section.blocks && (
+                    <CaseStudyResearchBlocks
+                      blocks={section.blocks}
+                      accentTextColor={accentTextColor}
+                      calloutBg={study.calloutBg}
+                    />
                   )}
                 </CaseStudySection>
               ))}

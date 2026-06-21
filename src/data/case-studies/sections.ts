@@ -3,6 +3,6 @@ export const defaultSidebarSections = [
   { id: "problem", label: "Problem" },
   { id: "research", label: "Research" },
   { id: "ideation", label: "Ideation" },
-  { id: "solutions", label: "Solutions" },
-  { id: "learning", label: "Learning" },
+  { id: "solutions", label: "Solution" },
+  { id: "learning", label: "Learnings" },
 ];

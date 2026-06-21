@@ -13,7 +13,7 @@ const experience = [
   {
     company: "Roku, Inc.",
     period: "2023 – Present",
-    role: "QA Engineer · Writing python scripts for testing product software and implementing AI tools.",
+    role: "QA Engineer · Writing python scripts for testing product software and creating/implementing AI tools.",
   },
   {
     company: "Stealth Startup",
@@ -32,7 +32,7 @@ const funFacts = [
     title: "Challenge-Seeker",
     period: "Birth – Present",
     description:
-      "From exploring new design styles to eating new flavors to conversing in a foreign language, I find thrill in trying new things and venturing into the unknown.",
+      "From exploring new design styles to eating new flavors and conversing in a foreign language, I find thrill in trying new things and venturing into the unknown.",
     decoration: {
       src: "/about/croissant.png",
       alt: "Croissant keychain",
@@ -40,8 +40,14 @@ const funFacts = [
     },
   },
   {
+    title: "Professional Listener",
+    period: "Birth – Present",
+    description:
+      "I'm always down to listen to others' stories and provide a listening ear. My empathetic nature helps me understand others' perspectives and provide support.",
+  },
+  {
     title: "Trinket Collector",
-    period: "2021 – Present",
+    period: "2020 – Present",
     description:
       "I love collecting keychains, figures, plushies, stickers, and comic books. Decorating my space with trinkets inspires me to be creative.",
     decoration: {
@@ -49,12 +55,6 @@ const funFacts = [
       alt: "Cat figurine",
       className: "absolute -right-1 top-6 w-8 sm:-right-2 sm:w-10",
     },
-  },
-  {
-    title: "Professional INFP",
-    period: "2019 – Present",
-    description:
-      "My mind naturally drifts to wonder what it's like to be in others' shoes and how I can be of help to them.",
   },
   {
     title: "Idk what else to put",
