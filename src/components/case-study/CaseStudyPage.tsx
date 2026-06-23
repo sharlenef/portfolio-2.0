@@ -8,7 +8,7 @@ import {
   CaseStudyMetaGrid,
   CaseStudySection,
 } from "@/components/case-study/CaseStudySection";
-import { defaultSidebarSections } from "@/data/case-studies/sections";
+import { getSidebarSections } from "@/data/case-studies/sections";
 import { getAccentTextColor, getHeroTextColor } from "@/data/case-studies";
 import type { CaseStudy } from "@/data/case-studies/types";
 
@@ -35,7 +35,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             <CaseStudySidebar
               title={study.title}
               accentTextColor={accentTextColor}
-              sections={defaultSidebarSections}
+              sections={getSidebarSections(study)}
             />
 
             <div className="space-y-16 min-w-0">

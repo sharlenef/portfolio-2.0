@@ -270,7 +270,12 @@ function SubsectionsBlock({
           >
             {item.title}
           </p>
-          {item.items ? (
+          {item.body && (
+            <p className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed whitespace-pre-line">
+              {item.body}
+            </p>
+          )}
+          {item.items && (
             <ul className="list-disc space-y-2 pl-5">
               {item.items.map((entry) => (
                 <li
@@ -281,12 +286,6 @@ function SubsectionsBlock({
                 </li>
               ))}
             </ul>
-          ) : (
-            item.body && (
-              <p className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed whitespace-pre-line">
-                {item.body}
-              </p>
-            )
           )}
         </div>
       ))}
@@ -294,11 +293,35 @@ function SubsectionsBlock({
   );
 }
 
-function ScreensBlock({ screens }: { screens: CaseStudyScreen[] }) {
+function ScreensBlock({
+  screens,
+  columns,
+}: {
+  screens: CaseStudyScreen[];
+  columns?: 2 | 3 | 4;
+}) {
+  const gridClass =
+    columns === 4
+      ? "grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4"
+      : columns === 3
+        ? "grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4"
+        : columns === 2
+          ? "grid grid-cols-2 gap-4 pt-4"
+          : "space-y-8 pt-4";
+
+  const imageSizes =
+    columns === 4
+      ? "(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 200px"
+      : columns === 3
+        ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 260px"
+        : columns === 2
+          ? "(max-width: 768px) 50vw, 400px"
+          : "(max-width: 1024px) 100vw, 896px";
+
   return (
-    <div className="space-y-8 pt-4">
+    <div className={gridClass}>
       {screens.map((screen) => (
-        <figure key={screen.src} className="space-y-3">
+        <figure key={screen.src} className="space-y-2">
           <div className="relative w-full overflow-hidden rounded-lg border border-black/10">
             <Image
               src={screen.src}
@@ -306,7 +329,7 @@ function ScreensBlock({ screens }: { screens: CaseStudyScreen[] }) {
               width={1352}
               height={900}
               className="h-auto w-full"
-              sizes="(max-width: 1024px) 100vw, 896px"
+              sizes={imageSizes}
             />
           </div>
           {screen.caption && (
@@ -317,6 +340,25 @@ function ScreensBlock({ screens }: { screens: CaseStudyScreen[] }) {
         </figure>
       ))}
     </div>
+  );
+}
+
+function QuoteBlock({
+  text,
+  accentTextColor,
+}: {
+  text: string;
+  accentTextColor: string;
+}) {
+  return (
+    <blockquote
+      className="border-l-4 pl-4 sm:pl-5"
+      style={{ borderColor: accentTextColor }}
+    >
+      <p className="font-sans text-sm sm:text-base italic text-neutral-600 leading-relaxed">
+        {text}
+      </p>
+    </blockquote>
   );
 }
 
@@ -461,9 +503,34 @@ export default function CaseStudyResearchBlocks({
           );
         }
 
+        if (block.type === "text") {
+          return (
+            <p
+              key={`text-${index}`}
+              className="font-sans text-sm sm:text-base text-neutral-600 leading-relaxed"
+            >
+              {block.text}
+            </p>
+          );
+        }
+
+        if (block.type === "quote") {
+          return (
+            <QuoteBlock
+              key={`quote-${index}`}
+              text={block.text}
+              accentTextColor={accentTextColor}
+            />
+          );
+        }
+
         if (block.type === "screens") {
           return (
-            <ScreensBlock key={`screens-${index}`} screens={block.screens} />
+            <ScreensBlock
+              key={`screens-${index}`}
+              screens={block.screens}
+              columns={block.columns}
+            />
           );
         }
 

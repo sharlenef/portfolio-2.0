@@ -4,7 +4,7 @@ import { hobbio } from "./hobbio";
 import { therapea } from "./therapea";
 import type { CaseStudy } from "./types";
 
-export const caseStudies: CaseStudy[] = [hobbio, bessy, therapea, getwell];
+export const caseStudies: CaseStudy[] = [hobbio, bessy, getwell, therapea];
 
 export const caseStudiesBySlug = Object.fromEntries(
   caseStudies.map((study) => [study.slug, study])

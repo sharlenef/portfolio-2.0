@@ -54,7 +54,9 @@ export type CaseStudyBlock =
       columns?: 2 | 3;
     }
   | { type: "sticky-notes"; title?: string; subtitle?: string; items: string[] }
-  | { type: "screens"; screens: CaseStudyScreen[] }
+  | { type: "text"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "screens"; screens: CaseStudyScreen[]; columns?: 2 | 3 | 4 }
   | { type: "figma-embed"; src: string; title?: string; heading?: string; href?: string }
   | { type: "external-link"; heading?: string; href: string; label: string };
 
